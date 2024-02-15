@@ -4,9 +4,10 @@ mongoose.connect('mongodb://localhost:27017/KangParkir');
 
 const schemaAkun = new Schema({
     nama:String,
-    riwayatMobil:Int16Array,
-    riwayatMotor:Int16Array,
-    pendapatan:Int16Array
+    password:String,
+    riwayatMobil:Number,
+    riwayatMotor:Number,
+    pendapatan:Number
 })
 
 const akun = mongoose.model("Akun",schemaAkun);
