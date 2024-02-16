@@ -1,6 +1,11 @@
 import parkiran from "../Models/parkiran.js";
 
 async function addParkiran(pemilik,plat,jenis){
+    const status = await checkParkiran(pemilik,plat);
+    if(status==true){
+        console.log("Kendaraan ini sudah ada di parkiran");
+        return;
+    }
     const parkiranBaru = new parkiran({
         pemilik:pemilik,
         plat:plat,
@@ -40,5 +45,3 @@ async function checkParkiran(pemilik,plat){
 }
 
 
-const status = await checkParkiran("Faiz","asdasdsa");
-console.log(status);
