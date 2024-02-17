@@ -1,11 +1,28 @@
 import parkiran from "../Models/parkiran.js";
 import * as controllerTampungan from "./controllertampungan.js";
+import process from "process";
+import readlinePromises from "readline/promises";
+
+const input = readlinePromises.createInterface({
+    input:process.stdin,
+    output:process.stdout
+})
+
 
 async function addParkiran(pemilik,plat,jenis){
     const data = await fetchDataParkiran();
     if(data.length>=3){
         console.log("Parkiran sudah penuh");
-        return;
+        const opsi = await input.question("Apakah kamu ingin menyimpan kendaraanmu di penampungan (ya/tidak) ? ");
+        if(opsi.toLocaleLowerCase()=="ya"){
+            await controllerTampungan.default.addTampungan(pemilik,plat,jenis);
+            console.log("Kendaraan anda kini berada di tampungan terlebih dahulu");
+            return;
+        }else{
+            console.log("Baiklah, sampai jumpa di lain waktu");
+            return;
+        }
+        
     }
     const status = await checkParkiran(pemilik,plat);
     if(status==true){
@@ -62,5 +79,6 @@ export default{
     checkParkiran
 }
 
+await addParkiran("Bagas","B1231","Motor");
 
 

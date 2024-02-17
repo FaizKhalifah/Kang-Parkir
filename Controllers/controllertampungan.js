@@ -1,13 +1,13 @@
 import tampungan from "../Models/tampungan.js";
 
-async function addTampungan(nama,plat,jenis){
-    const status = await checkTampungan(nama,plat);
+async function addTampungan(pemilik,plat,jenis){
+    const status = await checkTampungan(pemilik,plat);
     if(status==true){
         console.log("Kendaraan ini sudah ada di tampungan");
         return;
     }else{
         const tampunganBaru = new tampungan({
-            nama:nama,
+            pemilik:pemilik,
             plat:plat,
             jenis:jenis
         });
@@ -18,14 +18,14 @@ async function addTampungan(nama,plat,jenis){
 
 }
 
-async function deleteTampungan(nama,plat){
+async function deleteTampungan(pemilik,plat){
     const status = await checkTampungan(nama,plat);
     if(status==false){
         console.log("Kendaraan tersebut tidak ada di tampungan");
         return;
     }
     const identitasTampungan={
-        nama:nama,
+        pemilik:pemilik,
         plat:plat
     };
    await tampungan.deleteOne(identitasTampungan);
@@ -33,9 +33,9 @@ async function deleteTampungan(nama,plat){
     return;
 }
 
-async function checkTampungan(nama,plat){
+async function checkTampungan(pemilik,plat){
     const identitasTampungan={
-        nama:nama,
+        pemilik:pemilik,
         plat:plat
     }
     const status = await tampungan.findOne(identitasTampungan);
