@@ -45,3 +45,9 @@ async function checkTampungan(nama,plat){
         return true;
     }
 }
+
+export default{
+    addTampungan,
+    deleteTampungan,
+    checkTampungan
+}

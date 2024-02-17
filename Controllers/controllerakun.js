@@ -1,5 +1,6 @@
 import akun from "../Models/akun.js";
 
+
 async function addUser(nama,password){
     const akunBaru = new akun({
         nama:nama,
@@ -10,5 +11,9 @@ async function addUser(nama,password){
     });
     await akunBaru.save();
     return;
+}
+
+async function addKendaraan(nama,plat,jenis){
+
 }
 

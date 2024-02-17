@@ -1,6 +1,12 @@
 import parkiran from "../Models/parkiran.js";
+import * as controllerTampungan from "./controllertampungan.js";
 
 async function addParkiran(pemilik,plat,jenis){
+    const data = await fetchDataParkiran();
+    if(data.length>=3){
+        console.log("Parkiran sudah penuh");
+        return;
+    }
     const status = await checkParkiran(pemilik,plat);
     if(status==true){
         console.log("Kendaraan ini sudah ada di parkiran");
@@ -11,6 +17,7 @@ async function addParkiran(pemilik,plat,jenis){
         plat:plat,
         jenis:jenis
     })
+    console.log(`${jenis} dengan plat ${plat} atas nama ${pemilik} telah masuk ke parkiran`)
     await parkiranBaru.save();
     return;
 }
@@ -43,5 +50,17 @@ async function checkParkiran(pemilik,plat){
         return true;
     }
 }
+
+async function fetchDataParkiran(){
+    const data = await parkiran.find();
+    return data;
+}
+
+export default{
+    addParkiran,
+    deleteParkiran,
+    checkParkiran
+}
+
 
 
