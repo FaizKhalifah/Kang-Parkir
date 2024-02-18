@@ -1,6 +1,5 @@
 import akun from "../Models/akun.js";
 
-
 async function addUser(nama,password){
     const akunBaru = new akun({
         nama:nama,
@@ -13,7 +12,14 @@ async function addUser(nama,password){
     return;
 }
 
-async function addKendaraan(nama,plat,jenis){
-
+async function getUser(){
+    const akunTarget = await akun.findOne();
+    return akunTarget;
 }
+
+export default{
+    getUser
+}
+
+
 
