@@ -3,11 +3,6 @@ import * as controllerTampungan from "./controllertampungan.js";
 import process from "process";
 import readlinePromises from "readline/promises";
 
-const input = readlinePromises.createInterface({
-    input:process.stdin,
-    output:process.stdout
-})
-
 
 async function addParkiran(pemilik,plat,jenis){
     const status = await checkParkiran(pemilik,plat);
@@ -66,6 +61,5 @@ export default{
     fetchDataParkiran
 }
 
-await addParkiran("Bagas","B1231","Motor");
 
 
