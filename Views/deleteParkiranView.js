@@ -1,7 +1,13 @@
 import * as controllerParkiran from "../Controllers/controllerparkiran.js";
 import * as controllerTampungan from "../Controllers/controllertampungan.js";
 import * as controllerAkun from "../Controllers/controllerakun.js";
+import process from "process";
+import readlinePromises from "readline/promises";
 
+const input = readlinePromises.createInterface({
+    input:process.stdin,
+    output:process.stdout
+})
 
 async function view(){
     const pemilik = await input.question("Masukkan pemilik kendaraan yang ingin keluar : ");
@@ -18,7 +24,7 @@ async function view(){
     const kangParkir = await controllerAkun.default.getUser();
     kangParkir.pendapatan+=10.000;
     console.log("Pendapatan parkir bertambah 10.000");
-    return;
+    process.exit(1);
 }
 
 export default {
