@@ -46,8 +46,21 @@ async function checkTampungan(pemilik,plat){
     }
 }
 
+async function fetchDataTampungan(){
+    const data = await tampungan.find();
+    return data;
+}
+
+async function pop(){
+    const top = tampungan.findOne();
+    await tampungan.deleteOne();
+    return top;
+}
+
 export default{
     addTampungan,
     deleteTampungan,
-    checkTampungan
+    checkTampungan,
+    fetchDataTampungan,
+    pop
 }

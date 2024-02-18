@@ -1,8 +1,4 @@
 import parkiran from "../Models/parkiran.js";
-import * as controllerTampungan from "./controllertampungan.js";
-import process from "process";
-import readlinePromises from "readline/promises";
-
 
 async function addParkiran(pemilik,plat,jenis){
     const status = await checkParkiran(pemilik,plat);
