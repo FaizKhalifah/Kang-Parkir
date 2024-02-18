@@ -10,20 +10,6 @@ const input = readlinePromises.createInterface({
 
 
 async function addParkiran(pemilik,plat,jenis){
-    const data = await fetchDataParkiran();
-    if(data.length>=3){
-        console.log("Parkiran sudah penuh");
-        const opsi = await input.question("Apakah kamu ingin menyimpan kendaraanmu di penampungan (ya/tidak) ? ");
-        if(opsi.toLocaleLowerCase()=="ya"){
-            await controllerTampungan.default.addTampungan(pemilik,plat,jenis);
-            console.log("Kendaraan anda kini berada di tampungan terlebih dahulu");
-            return;
-        }else{
-            console.log("Baiklah, sampai jumpa di lain waktu");
-            return;
-        }
-        
-    }
     const status = await checkParkiran(pemilik,plat);
     if(status==true){
         console.log("Kendaraan ini sudah ada di parkiran");
@@ -76,7 +62,8 @@ async function fetchDataParkiran(){
 export default{
     addParkiran,
     deleteParkiran,
-    checkParkiran
+    checkParkiran,
+    fetchDataParkiran
 }
 
 await addParkiran("Bagas","B1231","Motor");
